@@ -14,9 +14,7 @@ dotenv.config();
 connection();
 
 
-
-
 // Escuchar peticiones
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
     console.log("Estoy escuchando en el puerto " + process.env.PORT);
 })
