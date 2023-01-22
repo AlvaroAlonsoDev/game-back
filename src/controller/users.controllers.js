@@ -3,14 +3,11 @@ const User = require("../models/users.model");
 const Land = require("../models/lands.model");
 
 const checkUser = (req, res) => {
-    const params = req.params
+    const params = req.params;
+
     User.find({ email: params.email }, (error, data) => {
-        if (error || !data) {
-            return res.status(500).json({
-                status: "error",
-                mensaje: "Error al buscar"
-            })
-        }
+        if(err) throw err;
+
         if (!!data.length) {
             console.log('El usuario existe en la ddbb');
             return res.status(200).json({
@@ -40,13 +37,9 @@ const createUser = (req, res) => {
         const $user = new User(params)
 
         // guardar el articulo en la ddbb
-        $user.save((error, data) => {
-            if (error || !data) {
-                return res.status(400).json({
-                    status: "error",
-                    mensaje: "No se ha guardado el usuario"
-                })
-            }
+        $user.save((err, data) => {
+            if(err) throw err;
+
             //devolver el post
             return res.status(200).json({
                 status: "success",
@@ -55,32 +48,39 @@ const createUser = (req, res) => {
             })
         })
     } catch (error) {
-        console.log(error);
         return res.status(400).json({
             status: "error",
-            mensaje: "No se ha guardado el post"
+            mensaje: "No se ha guardado el post",
+            error
         })
     }
 }
 
 const choiceLand = async (req, res) => {
-    // Recogemos params
-    const params = req.body;
-
-    // Actualizamos user
-    await User.findOneAndUpdate({ _id: params.userId }, {
-        $set: { land_id: params.landId }
-    });
-
-    // Actualizamos Land
-    await Land.findOneAndUpdate({ _id: params.landId }, {
-        $set: { user_id: params.userId }
-    });
-
-    res.status(200).json({
-        message: "Usuario y Land actualizados con éxito",
-    });
-
+    try {
+        // Recogemos params
+        const params = req.body;
+    
+        // Actualizamos user
+        await User.findOneAndUpdate({ _id: params.userId }, {
+            $set: { land_id: params.landId }
+        });
+    
+        // Actualizamos Land
+        await Land.findOneAndUpdate({ _id: params.landId }, {
+            $set: { user_id: params.userId }
+        });
+    
+        res.status(200).json({
+            message: "Usuario y Land actualizados con éxito",
+        });
+    } catch (error) {
+        return res.status(400).json({
+            status: "error",
+            mensaje: "No se ha guardado el post",
+            error
+        })
+    }
 }
 
 

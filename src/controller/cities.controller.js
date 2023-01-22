@@ -15,9 +15,10 @@ const createCity = async (req, res) => {
         // Creamos las 4 "lands"
         const lands = [];
         for (let i = 0; i < params.quantity; i++) {
+
             const land = new Land({
                 city_id: city._id,
-                position: i,
+                position: i + 1,
             });
             lands.push(land)
         }

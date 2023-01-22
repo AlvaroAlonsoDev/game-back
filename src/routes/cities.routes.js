@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-const CityController = require("../controller/cities.controller")
+const CityController = require("../controller/cities.controller");
 
 
 

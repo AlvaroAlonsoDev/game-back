@@ -2,6 +2,7 @@
 const connection = require("./database/connection");
 const dotenv = require("dotenv");
 const app = require("./src/server");
+require('./src/controller/cron.controller')
 
 
 // Mensaje de bienvenida

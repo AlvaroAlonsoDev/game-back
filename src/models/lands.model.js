@@ -41,26 +41,77 @@ const LandSchema = Schema({
             armaments: 100
         }
     },
+    loot: {
+        type: Object,
+        default: {
+            level: 1,
+            level_requirements: {
+                materials: 500,
+                armaments: 500
+            },
+            workers_current: 0,
+            workers_max: 10
+        }
+    },
+    units: {
+        type: Object,
+        default: {
+            homeless: {
+                quantity: 0,
+                stats: {
+                    life: 10,
+                    attack: 1,
+                    defense: 1
+                },
+                requirements: 1
+            },
+            mercenary: {
+                quantity: 0,
+                stats: {
+                    life: 20,
+                    attack: 2,
+                    defense: 2
+                },
+                requirements: 2
+            },
+            agent: {
+                quantity: 0,
+                stats: {
+                    life: 30,
+                    attack: 3,
+                    defense: 3
+                },
+                requirements: 3
+            }
+        }
+    },
     building: {
+        level: 1,
+        level_requirements: {
+            materials: 500,
+            armaments: 500
+        },
+        level_time: 60000,
         type: Object,
         default: {
             council: {
                 level: 1,
                 level_requirements: {
-                    materials:500,
-                    armaments:500
+                    materials: 500,
+                    armaments: 500
                 },
                 level_time: 60000,
-                Membership_size: 10,
-                Membership_max_size: 20,
-                Membership_growth: 1,
-                Money_growth: 100,
+                membership_size: 10,
+                membership_available: 10,
+                membership_max_size: 20,
+                membership_growth: 1,
+                money_growth: 100,
             },
             university: {
                 level: 1,
                 level_requirements: {
-                    materials:500,
-                    armaments:500
+                    materials: 500,
+                    armaments: 500
                 },
                 level_time: 60000,
                 students_current: 0,
@@ -69,21 +120,32 @@ const LandSchema = Schema({
             training_academy: {
                 level: 1,
                 level_requirements: {
-                    materials:500,
-                    armaments:500
+                    materials: 500,
+                    armaments: 500
                 },
                 level_time: 60000,
                 units: {
-                    level_1_requirements: {},
-                    level_2_requirements: {},
-                    level_3_requirements: {}
+                    homeless: {
+                        money: 25,
+                        materials: 50
+                    },
+                    mercenary: {
+                        money: 50,
+                        materials: 75,
+                        armaments: 25
+                    },
+                    agent: {
+                        money: 75,
+                        materials: 100,
+                        armaments: 50
+                    }
                 }
             },
             warehouse: {
                 level: 1,
                 level_requirements: {
-                    materials:500,
-                    armaments:500
+                    materials: 500,
+                    armaments: 500
                 },
                 level_time: 60000,
                 safe_materials: {
@@ -94,22 +156,22 @@ const LandSchema = Schema({
             shop: {
                 level: 1,
                 level_requirements: {
-                    materials:500,
-                    armaments:500
+                    materials: 500,
+                    armaments: 500
                 },
                 level_time: 60000,
                 distance: 1
             },
-            taller: {
+            garage: {
                 level: 1,
                 level_requirements: {
-                    materials:500,
-                    armaments:500
+                    materials: 500,
+                    armaments: 500
                 },
                 level_time: 60000,
-                vehicles : {
-                    vehicles_type_1:{},
-                    vehicles_type_2:{},
+                vehicles: {
+                    vehicles_type_1: {},
+                    vehicles_type_2: {},
                 }
             }
         }

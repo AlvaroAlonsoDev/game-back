@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const CitySchema = Schema({
+    user_id: {
+        type: String,
+        default: ''
+    },
     name_city: {
         type: String,
         required: true
