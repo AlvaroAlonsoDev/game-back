@@ -1,0 +1,20 @@
+{
+  "name": "policaconos-back",
+  "version": "1.0.0",
+  "description": "Game policaconos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Alvaro Alonso Irurita Contreras",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.4",
+    "node-cron": "^3.0.2",
+    "nodemon": "^2.0.20"
+  }
+}
