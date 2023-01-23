@@ -22,6 +22,7 @@ const updateAllLands = () => {
                     const membership_available = parseInt(land.building.council.membership_available);
                     const membership_size = parseInt(land.building.council.membership_size);
                     const membership_max_size = parseInt(land.building.council.membership_max_size);
+                    const membership_growth = parseInt(land.building.council.membership_growth);
 
                     // Validad que workers no supera el max
 
@@ -45,7 +46,7 @@ const updateAllLands = () => {
                     Land.findOneAndUpdate({ "_id": i_land._id }, i_land, { new: true }, (err, data) => { if (err) throw err });
 
                     // land.save();
-                    console.log(`Se ha actualizado la cantidad de recursos en esta Land`);
+                    console.log(`Se ha actualizado Land con id ${i_land._id}`);
                 }
             });
         })
@@ -61,14 +62,14 @@ const updateAllLands = () => {
 
 
 // programar una tarea para ejecutarse cada minuto
-// cron.schedule('* * * * *', () => {
-//     updateAllLands();
-// });
-
-//cada 30 segundos
-cron.schedule('*/10 * * * * *', () => {
+cron.schedule('* * * * *', () => {
     updateAllLands();
 });
+
+//cada 30 segundos
+// cron.schedule('*/10 * * * * *', () => {
+//     updateAllLands();
+// });
 
 
 

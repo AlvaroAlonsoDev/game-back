@@ -93,6 +93,7 @@ const updateLandUnit = async (req, res) => {
                         ...data._doc.building,
                         council: {
                             ...data._doc.building.council,
+                            membership_size: parseInt(data._doc.building.council.membership_size) - parseInt(params.quantity_unit),
                             membership_available: parseInt(data._doc.building.council.membership_available) - parseInt(params.quantity_unit)
                         }
                     }
